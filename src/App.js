@@ -1,5 +1,12 @@
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/Route/Routes";
+
 const App = () => {
-   return <div>hello from dent care</div>;
+   return (
+      <div>
+         <RouterProvider router={router} />
+      </div>
+   );
 };
 
 export default App;
