@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import logoDark from "../../../LogoDark.svg";
+import ButtonGradient from "../../../components/ButtonGradient/ButtonGradient";
 import logoLight from "../../../LogoLight.svg";
 
 const menuItems = [
@@ -36,18 +36,21 @@ const Navbar = () => {
                         </NavLink>
                      </li>
                   ))}
-                  <li>
-                     <Link className="btn btn-accent text-primary rounded-md">Login</Link>
-                  </li>
+
+                  <Link to="/login" className="">
+                     <ButtonGradient>Login</ButtonGradient>
+                  </Link>
+
                   <div className="flex items-center gap-4">
                      <li className="avatar">
                         <Link className="w-12 h-12 rounded-full ring ring-secondary">
                            <img src="" alt="profile" className="w-full" />
                         </Link>
                      </li>
-                     <li>
-                        <Link className="btn btn-accent text-primary rounded-md">Logout</Link>
-                     </li>
+
+                     <Link className="">
+                        <ButtonGradient>Logout</ButtonGradient>
+                     </Link>
                   </div>
                </ul>
             </div>

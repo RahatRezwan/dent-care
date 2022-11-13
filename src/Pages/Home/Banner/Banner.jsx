@@ -1,6 +1,7 @@
 import React from "react";
 import chair from "../../../assets/images/chair.png";
 import bg from "../../../assets/images/bg.png";
+import ButtonGradient from "../../../components/ButtonGradient/ButtonGradient";
 
 const Banner = () => {
    return (
@@ -22,14 +23,7 @@ const Banner = () => {
                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                      Lorem Ipsum has been the industry's standard dummy text ever since the
                   </p>
-                  <button
-                     className="btn text-white border-none"
-                     style={{
-                        background: `linear-gradient(90deg, #19D3AE -22.5%, #0FCFEC 120.83%)`,
-                     }}
-                  >
-                     Get Started
-                  </button>
+                  <ButtonGradient>Get Started</ButtonGradient>
                </div>
             </div>
          </div>
