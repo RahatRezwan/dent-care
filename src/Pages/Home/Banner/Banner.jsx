@@ -1,5 +1,6 @@
 import React from "react";
 import chair from "../../../assets/images/chair.png";
+import bg from "../../../assets/images/bg.png";
 
 const Banner = () => {
    return (
@@ -7,8 +8,8 @@ const Banner = () => {
          <div
             className="hero min-h-screen mt-[10px] max-w-[1398px] mx-auto bg-cover bg-left bg-no-repeat"
             style={{
-               backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.89), rgba(255, 255, 255, 0.983)),
-            url(${chair})`,
+               backgroundImage: `
+            url(${bg})`,
             }}
          >
             <div className="hero-content flex-col lg:flex-row-reverse">

@@ -4,16 +4,16 @@ const InfoCard = ({ card }) => {
    const { name, details, icon, background } = card;
    return (
       <div>
-         <div className={`card card-side bg-base-100 shadow-xl ${background}`}>
-            <figure>
-               <img src={icon} alt="icon" />
-            </figure>
-            <div className="card-body">
-               <h2 className="card-title">New movie is released!</h2>
-               <p>Click the button to watch on Jetflix app.</p>
-               <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Watch</button>
-               </div>
+         <div
+            className="py-[52px] px-[32px] rounded-[14px] flex flex-col lg:flex-row lg:justify-start lg:items-center gap-[22px]"
+            style={{ background: `${background}` }}
+         >
+            <div className="flex justify-center lg:justify-start">
+               <img src={icon} alt="icon" className="" />
+            </div>
+            <div className="">
+               <h2 className="text-xl font-bold">{name}</h2>
+               <p className="text-base">{details}</p>
             </div>
          </div>
       </div>
