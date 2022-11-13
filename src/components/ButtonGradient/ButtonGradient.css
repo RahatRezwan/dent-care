@@ -1,0 +1,8 @@
+.gradient {
+   background: linear-gradient(90deg, #19d3ae -22.5%, #0fcfec 120.83%);
+}
+
+.gradient:hover {
+   background: linear-gradient(-90deg, #0fcfec 120.83%, #19d3ae -22.5%);
+   transition: ease-in;
+}
