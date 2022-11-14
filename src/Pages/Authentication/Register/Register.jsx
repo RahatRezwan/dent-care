@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Register = () => {
    const { createNewUser, updateAUser } = useContext(AuthContext);
+   const [signUpError, setSignUpError] = useState("");
    const {
       register,
       formState: { errors },
@@ -13,16 +15,21 @@ const Register = () => {
 
    const handleRegister = (data) => {
       console.log(data);
+      setSignUpError("");
       createNewUser(data.email, data.password)
          .then((result) => {
             const user = result.user;
             console.log(user);
             const userInfo = { displayName: data.name };
             updateAUser(userInfo)
-               .then(() => {})
+               .then(() => {
+                  toast.success("User created successfully");
+               })
                .catch((e) => console.log(e));
          })
-         .catch((e) => console.log(e));
+         .catch((e) => {
+            setSignUpError(e.code.slice(5));
+         });
    };
    return (
       <div className="h-[600px] flex justify-center items-center">
@@ -84,7 +91,7 @@ const Register = () => {
                      </p>
                   )}
                </div>
-
+               {signUpError && <p className="text-error capitalize">{signUpError}</p>}
                <input
                   type="submit"
                   className="btn text-white btn-primary hover:btn-secondary  w-full"
