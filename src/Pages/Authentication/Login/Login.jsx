@@ -3,10 +3,15 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-   const { register, handleSubmit } = useForm();
+   const {
+      register,
+      formState: { errors },
+      handleSubmit,
+   } = useForm();
 
    const handleLogin = (data) => {
       console.log(data);
+      console.log(errors);
    };
    return (
       <div className="h-[600px] flex justify-center items-center">
@@ -15,24 +20,36 @@ const Login = () => {
             <form onSubmit={handleSubmit(handleLogin)}>
                <div className="form-control w-full">
                   <label className="label">
-                     <span className="label-text">Email</span>
+                     <span className={`${errors?.email && "text-error"} label-text`}>Email *</span>
                   </label>
                   <input
-                     type="text"
-                     {...register("email")}
-                     className="input input-bordered w-full"
+                     type="email"
+                     {...register("email", { required: "Email Address is required" })}
+                     className={`${errors?.email && "input-error"} input input-bordered w-full`}
                   />
+                  {errors.email && (
+                     <p className="text-error" role="alert">
+                        {errors.email?.message}
+                     </p>
+                  )}
                </div>
 
                <div className="form-control w-full">
                   <label className="label">
-                     <span className="label-text">Password</span>
+                     <span className={`${errors?.password && "text-error"} label-text`}>
+                        Password *
+                     </span>
                   </label>
                   <input
                      type="password"
-                     {...register("password")}
-                     className="input input-bordered w-full"
+                     {...register("password", { required: "Password is required" })}
+                     className={`${errors?.password && "input-error"} input input-bordered w-full`}
                   />
+                  {errors.password && (
+                     <p className="text-error" role="alert">
+                        {errors.password?.message}
+                     </p>
+                  )}
                   <label className="label">
                      <span className="label-text-alt">
                         <Link>forget Password?</Link>
