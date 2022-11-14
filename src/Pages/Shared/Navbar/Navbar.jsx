@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import ButtonGradient from "../../../components/ButtonGradient/ButtonGradient";
+import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 import logoLight from "../../../LogoLight.svg";
 
 const menuItems = [
@@ -12,6 +13,12 @@ const menuItems = [
 ];
 
 const Navbar = () => {
+   const { logoutAUser, user } = useContext(AuthContext);
+   const handleLogout = () => {
+      logoutAUser()
+         .then(() => {})
+         .catch((e) => console.log(e));
+   };
    return (
       <div className="shadow-md w-full">
          <div className="navbar flex justify-between items-center max-w-[1251px] mx-auto my-[10px]">
@@ -37,21 +44,27 @@ const Navbar = () => {
                      </li>
                   ))}
 
-                  <Link to="/login" className="">
-                     <ButtonGradient>Login</ButtonGradient>
-                  </Link>
+                  {user?.uid ? (
+                     <>
+                        <div className="flex items-center gap-4">
+                           <li className="avatar">
+                              <Link className="w-12 h-12 rounded-full ring ring-secondary">
+                                 <img src="" alt="profile" className="w-full" />
+                              </Link>
+                           </li>
 
-                  <div className="flex items-center gap-4">
-                     <li className="avatar">
-                        <Link className="w-12 h-12 rounded-full ring ring-secondary">
-                           <img src="" alt="profile" className="w-full" />
+                           <Link onClick={handleLogout} className="">
+                              <ButtonGradient>Logout</ButtonGradient>
+                           </Link>
+                        </div>
+                     </>
+                  ) : (
+                     <>
+                        <Link to="/login" className="">
+                           <ButtonGradient>Login</ButtonGradient>
                         </Link>
-                     </li>
-
-                     <Link className="">
-                        <ButtonGradient>Logout</ButtonGradient>
-                     </Link>
-                  </div>
+                     </>
+                  )}
                </ul>
             </div>
          </div>
