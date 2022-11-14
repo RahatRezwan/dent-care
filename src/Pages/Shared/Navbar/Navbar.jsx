@@ -48,7 +48,10 @@ const Navbar = () => {
                      <>
                         <div className="flex items-center gap-4">
                            <li className="avatar">
-                              <Link className="w-12 h-12 rounded-full ring ring-secondary">
+                              <Link
+                                 to="/dashboard"
+                                 className="w-12 h-12 rounded-full ring ring-secondary"
+                              >
                                  <img src="" alt="profile" className="w-full" />
                               </Link>
                            </li>
