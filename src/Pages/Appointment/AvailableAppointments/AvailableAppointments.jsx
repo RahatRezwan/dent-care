@@ -11,6 +11,7 @@ const AvailableAppointments = ({ selectedDate }) => {
 
    const date = format(selectedDate, "PP");
 
+   /* Load data using react/tanStack query */
    const {
       data: appointmentOptions = [],
       refetch,
