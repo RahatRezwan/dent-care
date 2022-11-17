@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import useToken from "../../../hooks/useToken";
 
 const Login = () => {
    const { loginAUser } = useContext(AuthContext);
@@ -13,20 +14,23 @@ const Login = () => {
       handleSubmit,
    } = useForm();
 
+   const [loginUserEmail, setLoginUserEmail] = useState("");
+   const [token] = useToken(loginUserEmail);
    const navigate = useNavigate();
    const location = useLocation();
-
    const from = location.state?.from?.pathname || "/";
+
+   if (token) {
+      toast.success("Login successfully");
+      navigate(from, { replace: true });
+   }
 
    const handleLogin = (data) => {
       console.log(data);
       setLoginError("");
       loginAUser(data.email, data.password)
          .then((result) => {
-            const user = result.user;
-            console.log(user);
-            toast.success("Login successfully");
-            navigate(from, { replace: true });
+            setLoginUserEmail(data.email);
          })
          .catch((e) => {
             console.log(e);
@@ -61,7 +65,7 @@ const Login = () => {
                      </span>
                   </label>
                   <input
-                     type="password"
+                     type="text"
                      {...register("password", { required: "Password is required" })}
                      className={`${errors?.password && "input-error"} input input-bordered w-full`}
                   />

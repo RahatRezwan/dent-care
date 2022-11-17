@@ -17,6 +17,14 @@ const MyAppointments = () => {
          }).then((res) => res.json()),
    });
 
+   if (bookings.length === 0) {
+      return (
+         <div className="text-center mt-5">
+            <h2 className="text-2xl">No Appointments Found</h2>
+         </div>
+      );
+   }
+
    return (
       <div>
          <h3 className="text-3xl mb-5">My Appointments</h3>
