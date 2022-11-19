@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import Loading from "../../Shared/Loading/Loading";
+import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
 
 const ManageDoctors = () => {
    const {
@@ -68,13 +69,20 @@ const ManageDoctors = () => {
                         <td>{doctor.email}</td>
                         <td>{doctor.specialty}</td>
                         <td>
-                           <button
-                              onClick={() => handleDelete(doctor)}
+                           <label
+                              htmlFor="confirmation-modal"
                               className="btn btn-error btn-xs text-white"
                            >
                               Delete
-                           </button>
+                           </label>
                         </td>
+
+                        <ConfirmationModal
+                           title="Delete Confirmation"
+                           message={`Are you sure you want to remove ${doctor.name} from the list? Once you delete it cannot be undone.`}
+                           confirmDelete={handleDelete}
+                           deleteData={doctor}
+                        ></ConfirmationModal>
                      </tr>
                   ))}
                </tbody>
